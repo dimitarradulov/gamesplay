@@ -1,4 +1,4 @@
-const Header = () => {
+const Header = ({ navChangeHandler }) => {
   const onHeaderClick = (e) => {
     e.preventDefault();
 
