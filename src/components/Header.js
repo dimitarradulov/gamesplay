@@ -4,6 +4,7 @@ const Header = ({ navChangeHandler }) => {
 
     if (e.target.tagName === 'A') {
       const url = new URL(e.target.href);
+      navChangeHandler(url.pathname);
     }
   };
 
