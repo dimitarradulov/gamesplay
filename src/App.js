@@ -3,7 +3,8 @@ import { useState } from 'react';
 import Header from './components/Header';
 import WelcomeWorld from './components/WelcomeWorld';
 import CreateGame from './components/CreateGame';
-import GameCatalog from './components/GameCatalog';
+import GameCatalog from './components/GameCatalog/GameCatalog';
+import ErrorPage from './components/ErrorPage';
 
 function App() {
   const [page, setPage] = useState('/home');
@@ -22,7 +23,7 @@ function App() {
     <div id="box">
       <Header navChangeHandler={navChangeHandler} />
 
-      <main id="main-content">{routes[page] || <h2>No such page</h2>}</main>
+      <main id="main-content">{routes[page] || <ErrorPage />}</main>
     </div>
   );
 }
