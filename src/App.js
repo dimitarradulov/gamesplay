@@ -1,29 +1,27 @@
-import { useState } from 'react';
+import { Route, Switch } from 'react-router-dom';
 
 import Header from './components/Header';
 import WelcomeWorld from './components/WelcomeWorld';
 import CreateGame from './components/CreateGame';
 import GameCatalog from './components/GameCatalog/GameCatalog';
+import Login from './components/Login';
+import Register from './components/Register';
 import ErrorPage from './components/ErrorPage';
 
 function App() {
-  const [page, setPage] = useState('/home');
-
-  const routes = {
-    '/home': <WelcomeWorld />,
-    '/games': <GameCatalog />,
-    '/create-game': <CreateGame />,
-  };
-
-  const navChangeHandler = (path) => {
-    setPage(path);
-  };
-
   return (
     <div id="box">
-      <Header navChangeHandler={navChangeHandler} />
+      <Header />
 
-      <main id="main-content">{routes[page] || <ErrorPage />}</main>
+      <main id="main-content">
+        <Switch>
+          <Route path="/" exact component={WelcomeWorld} />
+          <Route path="/create-game" component={CreateGame} />
+          <Route path="/games" component={GameCatalog} />
+          <Route path="/login" component={Login} />
+          <Route path="/register" component={Register} />
+        </Switch>
+      </main>
     </div>
   );
 }
