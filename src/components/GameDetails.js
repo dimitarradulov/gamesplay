@@ -1,26 +1,31 @@
-const GameDetails = () => {
+import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+
+import gameService from './services/gameService';
+
+const GameDetails = ({ match }) => {
+  const [game, setGame] = useState({});
+
+  useEffect(() => {
+    gameService.getOne(match.params.gameId).then((game) => {
+      setGame(game);
+    });
+  }, []);
+
+  console.log(game);
+
   return (
     <section id="game-details">
       <h1>Game Details</h1>
       <div className="info-section">
         <div className="game-header">
-          <img
-            className="game-img"
-            src="images/MineCraft.png"
-            alt="minecraft"
-          />
-          <h1>Bright</h1>
-          <span className="levels">MaxLevel: 4</span>
-          <p className="type">Action, Crime, Fantasy</p>
+          <img className="game-img" src={game.imageUrl} alt="minecraft" />
+          <h1>{game.title}</h1>
+          <span className="levels">MaxLevel: {game.maxLevel}</span>
+          <p className="type">{game.category}</p>
         </div>
 
-        <p className="text">
-          Set in a world where fantasy creatures live side by side with humans.
-          A human cop is forced to work with an Orc to find a weapon everyone is
-          prepared to kill for. Set in a world where fantasy creatures live side
-          by side with humans. A human cop is forced to work with an Orc to find
-          a weapon everyone is prepared to kill for.
-        </p>
+        <p className="text">{game.summary}</p>
 
         <div className="details-comments">
           <h2>Comments:</h2>

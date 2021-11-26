@@ -6,6 +6,7 @@ import CreateGame from './components/CreateGame';
 import GameCatalog from './components/GameCatalog/GameCatalog';
 import Login from './components/Login';
 import Register from './components/Register';
+import GameDetails from './components/GameDetails';
 import ErrorPage from './components/ErrorPage';
 
 function App() {
@@ -17,9 +18,10 @@ function App() {
         <Switch>
           <Route path="/" exact component={WelcomeWorld} />
           <Route path="/create-game" component={CreateGame} />
-          <Route path="/games" component={GameCatalog} />
+          <Route path="/games" exact component={GameCatalog} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
+          <Route path="/games/:gameId" component={GameDetails} />
         </Switch>
       </main>
     </div>

@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
 
-import getAll from '../services/gameService';
+import gameService from '../services/gameService';
 import GameCard from './GameCard';
 
 const GameCatalog = () => {
   const [games, setGames] = useState([]);
   useEffect(() => {
-    getAll().then((games) => setGames(games));
+    gameService.getAll().then((games) => setGames(games));
   }, []);
 
   return (
